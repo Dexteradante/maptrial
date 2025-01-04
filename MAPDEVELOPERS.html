@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <base target="_top">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Developers Map</title>
+
+  <link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+  <style>
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+    }
+
+    .leaflet-container {
+      height: 400px;
+      width: 600px;
+      max-width: 100%;
+      max-height: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="map" style="width: 100%; height: 90vh; margin: 10px;"></div>
+  <script>
+     // Initialize the map and set its view to Dubai
+     const map = L.map('map').setView([25.276987, 55.296249], 11);
+
+// Add a base tile layer from OpenStreetMap
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+
+// Developer data (replace with actual developer locations and details)
+const developers = [
+  {
+    name: "Emaar Properties",
+    location: [25.1923364, 55.2762233],
+    description: "Emaar"
+  },
+  {
+    name: "Dubai Holding",
+    location: [25.0987506, 55.1595258],
+    description: "Dubai Holding"
+  },
+  {
+    name: "Sobha",
+    location: [25.175845, 55.308463],
+    description: "Sobha"
+  },
+  {
+    name: "Damac",
+    location: [25.0245, 55.2431],
+    description: "Damac"
+  },
+  {
+    name: "Danube Properties",
+    location: [25.138881, 55.2164723],
+    description: "Danube Properties"
+  },
+  {
+    name: "Ellington Properties",
+    location: [25.1854283, 55.2645293],
+    description: "Ellington Properties"
+  },
+  {
+    name: "Samana",
+    location: [25.185424, 55.280141],
+    description: "Samana"
+  }
+];
+
+// Add markers for each developer with tooltips always visible
+developers.forEach(developer => {
+  L.marker(developer.location)
+    .addTo(map)
+    .bindTooltip(developer.name, { permanent: true, direction: 'top' })
+    .bindPopup(`<strong>${developer.name}</strong><br>${developer.description}`);
+});
+  </script>
+</body>
+
+</html>
+
